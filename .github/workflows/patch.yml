@@ -1,4 +1,4 @@
-name: vsteam_framework_patch
+name: main_job
 
 on:
   workflow_dispatch:
@@ -28,17 +28,6 @@ jobs:
             echo "Setting Vienam timezone"
             sudo timedatectl set-timezone Asia/Ho_Chi_Minh
       
-       - name: Download Framework and Services dir
-         run: |
-
-            mkdir img_temp
-
-            [[ "${{ github.event.inputs.F }}" ]] && axel -n $(nproc) ${{ github.event.inputs.F }} -o img_temp/
-            [[ "${{ github.event.inputs.S }}" ]] && axel -n $(nproc) ${{ github.event.inputs.S }} -o img_temp/
-            
-            if [[ -z "${{ github.event.inputs.F }}" && -z "${{ github.event.inputs.S }}" ]]; then
-              exit 1
-            fi
 
 
        - name : Proccesing 
